@@ -1,4 +1,4 @@
-name: Build Artifact on Tag
+name: Build Artifact on push
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Clone Flipperzero Firmware Repository
       run: |
@@ -39,7 +39,7 @@ jobs:
         zip -r plugins.zip . -x all_in_one_parser.fal opal_parser.fal myki_parser.fal troika_parser.fal two_cities_parser.fal plantain_parser.fal aime_parser.fal
 
     - name: Upload Build Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: nfc-plugins
         path: ${{ github.workspace }}/flipperzero-firmware/dist/f7-D/apps_data/nfc/plugins/plugins.zip
